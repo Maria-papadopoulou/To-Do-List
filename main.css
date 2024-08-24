@@ -178,3 +178,8 @@ main
    color: crimson;
     
 }
+
+.task.completed .text {
+    text-decoration: line-through;
+    color: var(--gray);
+}
