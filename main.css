@@ -1,10 +1,10 @@
 :root 
 {
-    --dark: #374151;
-    --darker: #1F2935;
-    --darkest: #111827;
+    --dark: #442f48;
+    --darker: #132e4f;
+    --darkest: #133d1f;
     --gray: #6B7280; 
-    --light: #eee;
+    --light: #1c76dc;
     --pink: #7f298b;
     --purple: #8B5CF6;
 }
@@ -30,6 +30,7 @@ header
     padding: 2rem 1rem;
     max-width: 800px;
     width: 100%;
+    text-align:center;
     margin: 0 auto;
 }
 
@@ -44,6 +45,7 @@ header h1
 #new-task
 {
     display: flex;
+    text-align:center;
 }
 
 input, button
@@ -59,9 +61,10 @@ input, button
     flex: 110%;
     background-color: var(--darker);
     padding: 1rem;
+    text-align:center;
     border-radius: 1rem;
     margin-right: 1rem;
-    color: var(--light);
+    color: #FFF;
     font-size: 1.25rem;
 }
 
@@ -113,6 +116,7 @@ main
     font-size: 2.5rem;
     font-weight: 300;
     color: var(--gray);
+    text-align:center;
     margin-bottom: 1rem;
 }
 
