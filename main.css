@@ -17,13 +17,13 @@ body {
     font-size: 16px; /* Βασικό μέγεθος γραμματοσειράς */
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 header, main {
     max-width: 1200px; /* Μέγιστο πλάτος για το περιεχόμενο */
     margin: 0 auto;
     padding: 1rem;
-    box-sizing: border-box;
 }
 
 header h1 {
@@ -293,6 +293,11 @@ main {
         font-size: 1.5rem;
     }
 
+    #input-new-task {
+        font-size: 1rem;
+        padding: 0.5rem;
+    }
+
     .task .actions {
         flex-direction: column; /* Στήλες για καλύτερη εμφάνιση σε κινητά */
     }
@@ -300,6 +305,10 @@ main {
     .task .actions button {
         margin: 0.5rem 0;
         width: 100%; /* Πλήρες πλάτος για τα κουμπιά σε κινητά */
+    }
+
+    .typewriter h2 {
+        font-size: 1.5rem; /* Μικρότερη γραμματοσειρά για κινητά */
     }
 }
 
