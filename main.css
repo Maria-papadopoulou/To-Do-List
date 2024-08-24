@@ -10,6 +10,7 @@
     --complete-color: #008000; /* Χρώμα κουμπιού Complete (πράσινο) */
 }
 
+/* Γενικά στυλ */
 body {
     background-color: var(--background); /* Χρώμα φόντου της σελίδας */
     color: var(--text-color); /* Χρώμα κειμένου */
@@ -272,6 +273,31 @@ main {
     background-color: #005757;
 }
 
+/* Animation για την εμφάνιση του κειμένου */
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+/* Animation για το blinking του cursor */
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: var(--text-color); }
+}
+
+/* Στυλ για την τύπου γραφομηχανής */
+.typewriter h2 {
+    overflow: hidden; /* Κρύβει το περιεχόμενο που δεν είναι εμφανές */
+    border-right: .15em solid var(--text-color); /* Δημιουργεί την γραμμή του cursor */
+    white-space: nowrap; /* Αποτρέπει το τύλιγμα του κειμένου */
+    margin: 0 auto; /* Κεντράρει το κείμενο */
+    letter-spacing: .15em; /* Απόσταση μεταξύ των γραμμάτων */
+    animation: 
+        typing 3.5s steps(40, end), /* Ταχύτητα του typing effect */
+        blink-caret .75s step-end infinite; /* Εφέ του blinking cursor */
+    width: 100%; /* Εξασφαλίζει ότι το animation καλύπτει το πλήρες πλάτος */
+}
+
 /* Responsive design */
 @media (max-width: 600px) {
     header h1 {
@@ -292,32 +318,30 @@ main {
         padding: 0.5rem;
     }
 
+    /* Ενημέρωση CSS για τύπου γραφομηχανής */
     .typewriter h2 {
-        overflow: hidden; /* Κρύβει το περιεχόμενο που δεν είναι εμφανές */
-        border-right: .15em solid var(--text-color); /* Δημιουργεί την γραμμή του cursor */
-        white-space: nowrap; /* Αποτρέπει το τύλιγμα του κειμένου */
-        margin: 0 auto; /* Κεντράρει το κείμενο */
-        letter-spacing: .15em; /* Απόσταση μεταξύ των γραμμάτων */
-        animation: 
-            typing 3.5s steps(40, end), /* Ταχύτητα του typing effect */
-            blink-caret .75s step-end infinite; /* Εφέ του blinking cursor */
-        width: 100%; /* Εξασφαλίζει ότι το animation καλύπτει το πλήρες πλάτος */
+        font-size: 1.25rem; /* Μείωση μεγέθους γραμματοσειράς για κινητά */
     }
-    
-    /* Animation για την εμφάνιση του κειμένου */
-    @keyframes typing {
-        from { width: 0; }
-        to { width: 100%; }
+
+    #input-new-task {
+        font-size: 1rem; /* Μείωση μεγέθους γραμματοσειράς στο textarea για κινητά */
+        padding: 0.75rem; /* Μείωση padding για κινητά */
+        margin-right: 0.5rem; /* Μείωση margin-right για κινητά */
     }
-    
-    /* Animation για το blinking του cursor */
-    @keyframes blink-caret {
-        from, to { border-color: transparent; }
-        50% { border-color: var(--text-color); }
+
+    #submit-new-task {
+        padding: 0.5rem 1rem; /* Μείωση padding για το κουμπί προσθήκης task */
+        font-size: 1rem; /* Μείωση μεγέθους γραμματοσειράς για το κουμπί */
     }
-    @media (max-width: 600px) {
-        .typewriter h2 {
-            font-size: 1.5rem; /* Μικρότερη γραμματοσειρά για κινητά */
-        }
+
+    .task .actions {
+        flex-wrap: wrap; /* Εξασφαλίζει ότι τα κουμπιά προσαρμόζονται σε πολλές γραμμές αν χρειαστεί */
+        justify-content: center; /* Κεντράρει τα κουμπιά */
     }
-}        
+
+    .task .actions button {
+        padding: 0.5rem; /* Μείωση padding για κουμπιά */
+        font-size: 0.875rem; /* Μείωση μεγέθους γραμματοσειράς για κουμπιά */
+        margin: 0.25rem; /* Μείωση margin μεταξύ κουμπιών */
+    }
+}      
