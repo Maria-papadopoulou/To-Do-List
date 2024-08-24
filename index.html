@@ -3,35 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To Do List</title>
+    <title>To-Do List</title>
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
     <header>
         <h1>Task List</h1>
         <form id="new-task">
-            <input type="text" id="input-new-task" placeholder="What do you planned today?">
+            <div class="typewriter">
+                <h2>What do you have planned today?</h2>
+            
+            <textarea id="input-new-task" placeholder="Type your task here...." rows="1"></textarea>
             <input type="submit" id="submit-new-task" value="Add Task">
+            </div>
         </form>
     </header>
     <main>
-        <section class="task-list">
+        <section id="tasks" class="task-list">
             <h2>Tasks</h2>
-            <div id="tasks">
-               
-            </div>
         </section>
-        <section class="done-list">
-            <h2>Completed</h2>
-            <div id="done-tasks">
-                
-            </div>
+        <section id="done-tasks" class="completed-tasks">
+            <h2>Completed Tasks</h2>
         </section>
     </main>
-    <div id="popup" class="popup">
+    <!-- Popup για εισαγωγή μηνύματος -->
+    <div id="popup">
         <div class="popup-content">
-            <span class="close-button" id="close-popup">&times;</span>
-            <p>Please add a task before submitting!</p>
+            <p>Please add a task.</p>
+            <button id="close-popup">Close</button>
+        </div>
+    </div>
+    <!-- Popup για επεξεργασία task -->
+    <div id="edit-popup">
+        <div class="edit-popup-content">
+            <textarea id="edit-textarea" rows="4"></textarea>
+            <button id="save-edit">Save</button>
+            <button id="close-edit-popup">Cancel</button>
         </div>
     </div>
     <script src="main.js"></script>

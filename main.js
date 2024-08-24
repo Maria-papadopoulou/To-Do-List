@@ -1,94 +1,80 @@
 window.addEventListener('load', () => {
     const form = document.querySelector("#new-task");
     const input = document.querySelector("#input-new-task");
-    const list = document.querySelector("#tasks");
+    const taskList = document.querySelector("#tasks");
+    const completedList = document.querySelector("#done-tasks");
     const popup = document.querySelector("#popup");
-    const closeButton = document.querySelector("#close-popup");
+    const closePopup = document.querySelector("#close-popup");
+    const editPopup = document.querySelector("#edit-popup");
+    const saveEdit = document.querySelector("#save-edit");
+    const closeEditPopup = document.querySelector("#close-edit-popup");
+    const editTextarea = document.querySelector("#edit-textarea");
 
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
+    let currentTask;
 
-        const task = input.value;
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const taskText = input.value.trim();
 
-        if (!task) {
-            popup.style.display = 'flex'; // Εμφάνιση του pop-up
+        if (taskText === '') {
+            popup.style.display = 'flex'; // Εμφανίστε το pop-up αν το κείμενο είναι κενό
             return;
         }
 
-        const task_element = document.createElement("div");
-        task_element.classList.add("task");
+        const task = document.createElement('div');
+        task.classList.add('task');
 
-        const task_content = document.createElement("div");
-        task_content.classList.add("content");
+        task.innerHTML = `
+            <div class="content">
+                <p class="text">${taskText}</p>
+            </div>
+            <div class="actions">
+                <button class="edit">Edit</button>
+                <button class="delete">Delete</button>
+                <button class="complete">Complete</button>
+            </div>
+        `;
 
-        task_element.appendChild(task_content);
+        task.querySelector('.edit').addEventListener('click', () => {
+            currentTask = task;
+            editTextarea.value = task.querySelector('.text').textContent;
+            editPopup.style.display = 'flex'; // Εμφανίστε το pop-up επεξεργασίας
+        });
 
-        const task_input_element = document.createElement("input");
-        task_input_element.classList.add("text");
-        task_input_element.type = "text";
-        task_input_element.value = task;
-        task_input_element.setAttribute("readonly", "readonly");
+        task.querySelector('.delete').addEventListener('click', () => {
+            task.remove();
+        });
 
-        task_content.appendChild(task_input_element);
+        task.querySelector('.complete').addEventListener('click', () => {
+            task.classList.toggle('completed');
+            if (task.classList.contains('completed')) {
+                // Αφαίρεση των κουμπιών από το task που μεταφέρεται στην ενότητα ολοκληρωμένων
+                const actions = task.querySelector('.actions');
+                actions.remove(); // Αφαίρεση των κουμπιών
 
-        const task_actions_element = document.createElement("div");
-        task_actions_element.classList.add("actions");
-
-        const task_edit_element = document.createElement("button");
-        task_edit_element.classList.add("edit");
-        task_edit_element.innerHTML = "Edit";
-
-        const task_delete_element = document.createElement("button");
-        task_delete_element.classList.add("delete");
-        task_delete_element.innerHTML = "Delete";
-
-        const task_complete_element = document.createElement("button");
-        task_complete_element.classList.add("complete");
-        task_complete_element.innerHTML = "Complete";
-
-        task_actions_element.appendChild(task_edit_element);
-        task_actions_element.appendChild(task_delete_element);
-        task_actions_element.appendChild(task_complete_element);
-
-        task_element.appendChild(task_actions_element);
-
-        list.appendChild(task_element);
-
-        input.value = "";
-
-        task_edit_element.addEventListener('click', () => {
-            if (task_edit_element.innerText.toLowerCase() === "edit") {
-                task_edit_element.innerText = "Save";
-                task_input_element.removeAttribute("readonly");
-                task_input_element.focus();
+                completedList.appendChild(task);
             } else {
-                task_edit_element.innerText = "Edit";
-                task_input_element.setAttribute("readonly", "readonly");
+                taskList.appendChild(task);
             }
         });
 
-        task_delete_element.addEventListener('click', () => {
-            list.removeChild(task_element);
-        });
-
-        task_complete_element.addEventListener('click', () => {
-            task_element.classList.add('completed');
-            document.querySelector("#done-tasks").appendChild(task_element);
-            task_complete_element.remove(); // Αφαίρεση του κουμπιού Complete
-
-            // Αφαίρεση των κουμπιών Edit και Delete
-            task_element.querySelectorAll('.edit, .delete').forEach(btn => btn.remove());
-        });
+        taskList.appendChild(task);
+        input.value = '';
     });
 
-    closeButton.addEventListener('click', () => {
-        popup.style.display = 'none'; // Απόκρυψη του pop-up
+    closePopup.addEventListener('click', () => {
+        popup.style.display = 'none'; // Κλείστε το pop-up όταν κάνετε κλικ στο κουμπί
     });
 
-    // Κλείσιμο του pop-up όταν πατάς έξω από το περιεχόμενο
-    window.addEventListener('click', (e) => {
-        if (e.target === popup) {
-            popup.style.display = 'none';
+    closeEditPopup.addEventListener('click', () => {
+        editPopup.style.display = 'none'; // Κλείστε το pop-up επεξεργασίας όταν κάνετε κλικ στο κουμπί
+    });
+
+    saveEdit.addEventListener('click', () => {
+        if (currentTask) {
+            const textElement = currentTask.querySelector('.text');
+            textElement.textContent = editTextarea.value.trim();
+            editPopup.style.display = 'none'; // Κλείστε το pop-up επεξεργασίας μετά την αποθήκευση
         }
     });
 });
