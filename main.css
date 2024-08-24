@@ -12,16 +12,16 @@
 * 
 {
     box-sizing: border-box;
-    margin:0;
+    margin: 0;
     font-family: 'Fira sans', sans-serif;
 }
 
 body
 {
-    display:flex;
+    display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background:var(--dark);
+    background: var(--dark);
     color: #FFF;
 }
 
@@ -56,18 +56,18 @@ input, button
 
 #input-new-task
 {
-    flex:110%;
+    flex: 110%;
     background-color: var(--darker);
     padding: 1rem;
     border-radius: 1rem;
     margin-right: 1rem;
     color: var(--light);
-    font-size:1.25rem;
+    font-size: 1.25rem;
 }
 
 #input-new-task::placeholder
 {
-    color:var(--gray);
+    color: var(--gray);
 }
 
 #submit-new-task
@@ -77,35 +77,38 @@ input, button
     background-image: linear-gradient(to right, var(--pink), var(--purple));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    cursor:pointer;
+    cursor: pointer;
     transition: 0.4s;
 }
 
-#submit-new-task::hover
+#submit-new-task:hover
 {
     opacity: 0.8;
 }
 
-#submit-new-task::active
+#submit-new-task:active
 {
     opacity: 0.6;
 }
 
 main
 {
-    flex:110%;
+    flex: 110%;
     padding: 2rem 1rem;
     max-width: 800px;
     width: 100%;
     margin: 0 auto;
 }
 
-.task-list
+.task-list, .done-list
 {
     padding: 1rem;
+    background-color: var(--darker);
+    border-radius: 1rem;
+    margin-top: 2rem;
 }
 
-.task-list h2
+.task-list h2, .done-list h2
 {
     font-size: 2.5rem;
     font-weight: 300;
@@ -113,47 +116,46 @@ main
     margin-bottom: 1rem;
 }
 
-#tasks .task
+#tasks .task, #done-tasks .task
 {
-    display:flex;
-    justify-content: space-between ;
+    display: flex;
+    justify-content: space-between;
     background-color: var(--darkest);
     padding: 1rem;
     border-radius: 1rem;
     margin-bottom: 1rem;
 }
 
-#tasks .task .content .text
+#tasks .task .content .text, #done-tasks .task .content .text
 {
     color: var(--light);
-    font-size:1.125rem;
-    width:100%;
+    font-size: 1.125rem;
+    width: 100%;
     display: block;
     transition: 0.4s;
 }
 
 #tasks .task .content .text:not(:read-only)
 {
-   color: var(--pink); 
+    color: var(--pink); 
 }
 
 #tasks .task .actions
 {
-   display: flex;
-   margin: 0 -0.5rem; 
+    display: flex;
+    margin: 0 -0.5rem; 
 }
 
 .task .actions button
 {
-   cursor:pointer;
-   margin: 0 0.5rem;
-   font-weight: 700;
-   text-transform:uppercase;
-   transition: 0.4s;
-
+    cursor: pointer;
+    margin: 0 0.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: 0.4s;
 }
 
-.task .actions button::hover
+.task .actions button:hover
 {
     opacity: 0.8;
 }
@@ -165,21 +167,34 @@ main
 
 .task .actions .edit
 {
-    
     background-image: linear-gradient(to right, var(--pink), var(--purple));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    
 }
 
 .task .actions .delete
 {
-    
-   color: crimson;
-    
+    color: crimson;
 }
 
-.task.completed .text {
+.task .actions .complete
+{
+    color: green;
+}
+
+.task.completed .text
+{
     text-decoration: line-through;
     color: var(--gray);
+}
+
+.done-list .task
+{
+    background-color: var(--dark);
+    opacity: 0.8;
+}
+
+.done-list .task .actions
+{
+    display: none; /* Απόκρυψη όλων των κουμπιών στην ενότητα "Done" */
 }
