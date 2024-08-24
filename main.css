@@ -15,12 +15,15 @@ body {
     color: var(--text-color); /* Χρώμα κειμένου */
     font-family: Arial, sans-serif;
     font-size: 16px; /* Βασικό μέγεθος γραμματοσειράς */
+    margin: 0;
+    padding: 0;
 }
 
 header, main {
-    max-width: 800px;
+    max-width: 1200px; /* Μέγιστο πλάτος για το περιεχόμενο */
     margin: 0 auto;
     padding: 1rem;
+    box-sizing: border-box;
 }
 
 header h1 {
@@ -32,16 +35,20 @@ header h1 {
 
 #new-task {
     display: flex;
+    flex-direction: column; /* Στήλες για καλύτερη εμφάνιση */
     margin-bottom: 2rem;
+    max-width: 600px; /* Μέγιστο πλάτος για τη φόρμα */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #input-new-task {
-    flex: 1;
+    width: 100%; /* Πλήρες πλάτος */
     background-color: #ffffff;
     padding: 1rem;
     border: 2px solid var(--border-color);
     border-radius: 0.5rem;
-    margin-right: 1rem;
+    margin-bottom: 1rem; /* Κενό κάτω από το textarea */
     color: var(--text-color);
     font-size: 1.25rem; /* Μεγαλύτερη γραμματοσειρά για input */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -57,6 +64,7 @@ header h1 {
     font-size: 1.25rem; /* Μεγαλύτερη γραμματοσειρά για κουμπί */
     cursor: pointer;
     transition: background-color 0.3s;
+    width: auto; /* Αυτορυθμιζόμενο πλάτος για το κουμπί */
 }
 
 #submit-new-task:hover {
@@ -117,12 +125,13 @@ main {
 
 .task .actions {
     display: flex;
+    flex-wrap: wrap; /* Για καλύτερη εμφάνιση σε μικρές οθόνες */
     margin-top: 1rem;
 }
 
 .task .actions button {
     cursor: pointer;
-    margin: 0 0.5rem;
+    margin: 0.5rem;
     padding: 0.5rem 1rem;
     font-size: 1rem; /* Μεγαλύτερη γραμματοσειρά για τα κουμπιά */
     border-radius: 0.5rem;
@@ -154,6 +163,7 @@ main {
 .task .actions button:active {
     opacity: 0.6;
 }
+
 #popup {
     display: none;
     position: fixed;
@@ -263,6 +273,40 @@ main {
 #close-edit-popup:hover {
     background-color: #005757;
 }
+
+/* Responsive design */
+@media (max-width: 600px) {
+    header, main {
+        padding: 0.5rem;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    #submit-new-task {
+        font-size: 1rem;
+        padding: 0.5rem;
+    }
+
+    .task-list h2, .completed-tasks h2 {
+        font-size: 1.5rem;
+    }
+
+    .task .actions {
+        flex-direction: column; /* Στήλες για καλύτερη εμφάνιση σε κινητά */
+    }
+
+    .task .actions button {
+        margin: 0.5rem 0;
+        width: 100%; /* Πλήρες πλάτος για τα κουμπιά σε κινητά */
+    }
+}
+
+.typewriter {
+    position: relative; /* Για τη σωστή τοποθέτηση του κέρσορα */
+}
+
 .typewriter h2 {
     overflow: hidden; /* Κρύβει το περιεχόμενο που δεν είναι εμφανές */
     border-right: .15em solid var(--text-color); /* Δημιουργεί την γραμμή του cursor */
@@ -272,55 +316,18 @@ main {
     animation: 
         typing 3.5s steps(40, end), /* Ταχύτητα του typing effect */
         blink-caret .75s step-end infinite; /* Εφέ του blinking cursor */
+    height: 2.5rem; /* Ύψος για να χωράει το κείμενο και ο κέρσορας */
 }
 
 /* Animation για την εμφάνιση του κειμένου */
 @keyframes typing {
-    from { width: 0; }
-    to { width: 100%; }
+    0% { width: 0; }
+    90% { width: calc(100% - 1em); } /* Σταματά λίγο πριν το τέλος της γραμμής */
+    100% { width: calc(100% - 1em); } /* Σταματά στο τέλος της γραμμής */
 }
 
 /* Animation για το blinking του cursor */
 @keyframes blink-caret {
     from, to { border-color: transparent; }
     50% { border-color: var(--text-color); }
-}
-
-#new-task {
-    display: flex;
-    flex-direction: column; /* Στήνει τα στοιχεία κάθετα */
-    margin-bottom: 2rem;
-}
-
-.typewriter {
-    margin-bottom: 1rem; /* Απόσταση κάτω από το animation */
-}
-
-#input-new-task {
-    width: 100%; /* Κάνει το textarea να καταλαμβάνει όλο το διαθέσιμο πλάτος */
-    background-color: #ffffff;
-    padding: 1rem;
-    border: 2px solid var(--border-color);
-    border-radius: 0.5rem;
-    color: var(--text-color);
-    font-size: 1.25rem; /* Μεγαλύτερη γραμματοσειρά για input */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    resize: vertical; /* Επιτρέπει την αλλαγή μεγέθους μόνο κάθετα */
-    min-height: 6rem; /* Ελάχιστο ύψος για καλύτερη εμφάνιση */
-    margin-bottom: 1rem; /* Απόσταση κάτω από το textarea */
-}
-
-#submit-new-task {
-    background-color: var(--border-color);
-    color: #fff;
-    border: none;
-    padding: 1rem 2rem; /* Μεγαλύτερο padding για πιο εύχρηστο κουμπί */
-    border-radius: 0.5rem;
-    font-size: 1.25rem; /* Μεγαλύτερη γραμματοσειρά για κουμπί */
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-#submit-new-task:hover {
-    background-color: #005757;
 }
