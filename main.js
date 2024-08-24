@@ -1,9 +1,8 @@
-window.addEventListener('load', () => 
-{
+window.addEventListener('load', () => {
     const form = document.querySelector("#new-task");
     const input = document.querySelector("#input-new-task");
     const list = document.querySelector("#tasks");
-    const doneList = document.querySelector("#done-tasks"); // Προσθέσαμε αναφορά στο νέο section "Done"
+    const doneList = document.querySelector("#done-tasks");
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -14,68 +13,67 @@ window.addEventListener('load', () =>
             alert("Please add a task");
             return;
         }
-        
-        const task_element = document.createElement("div");
-        task_element.classList.add("task");
 
-        const task_contenet = document.createElement("div");
-        task_contenet.classList.add("content");
-        
-        task_element.appendChild(task_contenet);
+        const taskElement = document.createElement("div");
+        taskElement.classList.add("task");
 
-        const task_input_element = document.createElement("input");
-        task_input_element.classList.add("text");
-        task_input_element.type = "text";
-        task_input_element.value = task;
-        task_input_element.setAttribute("readonly", "readonly");
+        const taskContent = document.createElement("div");
+        taskContent.classList.add("content");
 
-        task_contenet.appendChild(task_input_element);
-        
-        const task_actions_element = document.createElement("div");
-        task_actions_element.classList.add("actions");
+        taskElement.appendChild(taskContent);
 
-        const task_edit_element = document.createElement("button");
-        task_edit_element.classList.add("edit");
-        task_edit_element.innerHTML = "Edit";
+        const taskInputElement = document.createElement("input");
+        taskInputElement.classList.add("text");
+        taskInputElement.type = "text";
+        taskInputElement.value = task;
+        taskInputElement.setAttribute("readonly", "readonly");
 
-        const task_delete_element = document.createElement("button");
-        task_delete_element.classList.add("delete");
-        task_delete_element.innerHTML = "Delete";
-        
-        const task_complete_element = document.createElement("button");
-        task_complete_element.classList.add("complete");
-        task_complete_element.innerHTML = "Complete";
+        taskContent.appendChild(taskInputElement);
 
-        task_actions_element.appendChild(task_edit_element);
-        task_actions_element.appendChild(task_delete_element);
-        task_actions_element.appendChild(task_complete_element);
+        const taskActionsElement = document.createElement("div");
+        taskActionsElement.classList.add("actions");
 
-        task_element.appendChild(task_actions_element);
+        const taskEditElement = document.createElement("button");
+        taskEditElement.classList.add("edit");
+        taskEditElement.innerHTML = "Edit";
 
-        list.appendChild(task_element);
+        const taskDeleteElement = document.createElement("button");
+        taskDeleteElement.classList.add("delete");
+        taskDeleteElement.innerHTML = "Delete";
+
+        const taskCompleteElement = document.createElement("button");
+        taskCompleteElement.classList.add("complete");
+        taskCompleteElement.innerHTML = "Complete";
+
+        taskActionsElement.appendChild(taskEditElement);
+        taskActionsElement.appendChild(taskDeleteElement);
+        taskActionsElement.appendChild(taskCompleteElement);
+
+        taskElement.appendChild(taskActionsElement);
+
+        list.appendChild(taskElement);
 
         input.value = "";
 
-        task_edit_element.addEventListener('click', () => {
-            if (task_edit_element.innerText.toLowerCase() == "edit") {
-                task_edit_element.innerText = "Save";
-                task_input_element.removeAttribute("readonly");
-                task_input_element.focus();
+        taskEditElement.addEventListener('click', () => {
+            if (taskEditElement.innerText.toLowerCase() == "edit") {
+                taskEditElement.innerText = "Save";
+                taskInputElement.removeAttribute("readonly");
+                taskInputElement.focus();
             } else {
-                task_edit_element.innerText = "Edit";
-                task_input_element.setAttribute("readonly", "readonly");
+                taskEditElement.innerText = "Edit";
+                taskInputElement.setAttribute("readonly", "readonly");
             }
         });
 
-        task_delete_element.addEventListener('click', () => {
-            list.removeChild(task_element);
+        taskDeleteElement.addEventListener('click', () => {
+            list.removeChild(taskElement);
         });
 
-        task_complete_element.addEventListener('click', () => {
-            // Μετακίνηση της εργασίας από το tasks στο done-tasks
-            doneList.appendChild(task_element);
-            task_element.classList.add("completed");
-            task_complete_element.disabled = true; // Απενεργοποίηση του κουμπιού Complete
+        taskCompleteElement.addEventListener('click', () => {
+            taskElement.classList.add("completed");
+            taskElement.removeChild(taskActionsElement); // Αφαιρεί τα κουμπιά
+            doneList.appendChild(taskElement); // Μεταφέρει το task στη λίστα ολοκληρωμένων
         });
     });
 });

@@ -1,44 +1,30 @@
 <!DOCTYPE html>
-<html lang="'en">
-
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width", initial-scale="1.0">
-    <title> Your To Do List </title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO DO LIST</title>
     <link rel="stylesheet" href="main.css"/>
 </head>
 <body>
     <header>
-        <h1> TO DO LIST </h1>
+        <h1>Task List</h1>
         <form id="new-task">
-            <input type="text" id="input-new-task" placeholder="What do you planned today?"/>
+            <input type="text" id="input-new-task" placeholder="What do you plan today?"/>
             <input type="submit" id="submit-new-task" value="Add task"/>
         </form>
     </header>
     <main>
         <section class="task-list">
-            <h2> Tasks </h2>
-            <div id="tasks">
-                <!-- <div class="task">
-                    <div class="content">
-                        <input type="text" class="text" value="Type your task here..." readonly/>
-                    </div>
-                <div class="actions">
-                    <button class="edit">Edit</button>
-                    <button class="delete">Delete</button>
-                 </div>
-                </div> -->
-                </div>
-
+            <h2>Tasks</h2>
+            <div id="tasks"></div>
         </section>
         <section class="done-list">
-            <h2>Done</h2>
-            <div id="done-tasks">
-            </div>
+            <h2>Completed Tasks</h2>
+            <div id="done-tasks"></div>
         </section>
     </main>
-<script src="main.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
