@@ -1,25 +1,30 @@
 :root {
-    --dark: #374151;
-    --darker: #1F2935;
-    --darkest: #111827;
-    --gray: #6B7280; 
-    --light: #eee;
-    --pink: #EC4899;
-    --purple: #8B5CF6;
+    --background: #BC8F8F; /* Χρώμα της άμμου */
+    --task-background: 	#0047AB; /* Σκούρο μπλε φόντο για τα πλαισία */
+    --complete-background: 	#0047AB; /* Σκούρο μπλε φόντο για τα πλαισία ολοκληρωμένων */
+    --text-color: #FFFFFF; /* Λευκό χρώμα κειμένου */
+    --edit-color: #1E90FF; /* Μπλε για Edit */
+    --save-color: #8A2BE2; /* Μωβ για Save */
+    --delete-color: #FF4500; /* Κόκκινο για Delete */
+    --complete-color: #32CD32; /* Πράσινο για Complete */
+    --border-color: #008080; /* Teal περιθώριο */
+    --box-background: #003366; /* Σκούρο μπλε εσωτερικό */
+    --title-color: #000000; /* Μαύρο για τους τίτλους */
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
-    font-family: 'Fira sans', sans-serif;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
 }
 
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background: var(--dark);
-    color: #FFF;
+    background: var(--background); /* Χρώμα της άμμου */
+    color: var(--text-color);
 }
 
 header {
@@ -27,19 +32,22 @@ header {
     max-width: 800px;
     width: 100%;
     margin: 0 auto;
+    border-bottom: 1px solid var(--text-color);
+    text-align: center; /* Κεντρική ευθυγράμμιση τίτλου */
 }
 
 header h1 {
     font-size: 2.5rem;
     font-weight: 300;
-    color: var(--gray);
+    color: var(--title-color); /* Μαύρο χρώμα τίτλου */
     margin-bottom: 1rem;
 }
 
 #new-task {
     display: flex;
-    flex-wrap: wrap;
     gap: 1rem;
+    justify-content: center; /* Κεντρική ευθυγράμμιση φορμών */
+    margin-bottom: 1rem;
 }
 
 input, button {
@@ -51,26 +59,30 @@ input, button {
 
 #input-new-task {
     flex: 1;
-    background-color: var(--darker);
+    background-color: var(--box-background); /* Σκούρο μπλε φόντο */
     padding: 1rem;
-    border-radius: 1rem;
-    margin-right: 1rem;
-    color: var(--light);
+    border-radius: 0.5rem;
+    color: var(--text-color);
     font-size: 1.25rem;
+    border: 1px solid var(--text-color);
+    overflow-wrap: break-word; /* Τυλίγει το κείμενο που ξεφεύγει από το πλάτος */
 }
 
 #input-new-task::placeholder {
-    color: var(--gray);
+    color: var(--text-color);
 }
 
 #submit-new-task {
     font-size: 1.25rem;
     font-weight: 700;
-    background-image: linear-gradient(to right, var(--pink), var(--purple));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--background); /* Χρώμα του φόντου */
+    background-color: var(--text-color); /* Χρώμα του κειμένου */
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
     cursor: pointer;
-    transition: 0.4s;
+    border: 1px solid var(--border-color); /* Teal περιθώριο */
+    transition: background-color 0.4s, opacity 0.4s;
+    text-transform: uppercase; /* Μεγάλους χαρακτήρες */
 }
 
 #submit-new-task:hover {
@@ -80,7 +92,6 @@ input, button {
 #submit-new-task:active {
     opacity: 0.6;
 }
-
 main {
     flex: 1;
     padding: 2rem 1rem;
@@ -91,44 +102,47 @@ main {
 
 .task-list, .done-list {
     padding: 1rem;
-    border: 2px solid var(--darkest);
-    border-radius: 1rem;
-    background-color: var(--darker);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    background-color: var(--box-background); /* Σκούρο μπλε φόντο */
     margin-bottom: 1rem;
 }
 
 .task-list h2, .done-list h2 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 300;
-    color: var(--gray);
+    color: var(--title-color); /* Μαύρο χρώμα τίτλου */
     margin-bottom: 1rem;
+    text-align: center; /* Κεντρική ευθυγράμμιση τίτλου */
 }
 
 #tasks .task, #done-tasks .task {
     display: flex;
-    justify-content: space-between;
-    background-color: var(--darkest);
+    flex-direction: column;
+    justify-content: flex-start; /* Ξεκινά από πάνω προς τα κάτω */
+    background-color: var(--box-background); /* Σκούρο μπλε φόντο */
     padding: 1rem;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-color);
+    box-sizing: border-box; /* Διασφαλίζει ότι το padding συμπεριλαμβάνεται στο πλάτος */
+}
+
+#tasks .task .content, #done-tasks .task .content {
     margin-bottom: 1rem;
 }
 
 #tasks .task .content .text, #done-tasks .task .content .text {
-    color: var(--light);
+    color: var(--text-color);
     font-size: 1.125rem;
     width: 100%;
-    display: block;
-    transition: 0.4s;
-    white-space: normal;
+    overflow-wrap: break-word; /* Τυλίγει το κείμενο που ξεφεύγει από το πλάτος */
 }
 
-#tasks .task .content .text:not(:read-only) {
-    color: var(--pink); 
-}
-
-#tasks .task .actions {
+#tasks .task .actions, #done-tasks .task .actions {
     display: flex;
-    margin: 0 -0.5rem; 
+    margin: 0 -0.5rem;
+    justify-content: space-between;
 }
 
 .task .actions button {
@@ -137,6 +151,26 @@ main {
     font-weight: 700;
     text-transform: uppercase;
     transition: 0.4s;
+    color: var(--background);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: none;
+}
+
+.task .actions .edit {
+    background-color: var(--edit-color);
+}
+
+.task .actions .save {
+    background-color: var(--save-color);
+}
+
+.task .actions .delete {
+    background-color: var(--delete-color);
+}
+
+.task .actions .complete {
+    background-color: var(--complete-color);
 }
 
 .task .actions button:hover {
@@ -147,19 +181,9 @@ main {
     opacity: 0.6;
 }
 
-.task .actions .edit {
-    background-image: linear-gradient(to right, var(--pink), var(--purple));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.task .actions .delete {
-    color: crimson;
-}
-
 .task.completed .text {
     text-decoration: line-through;
-    color: var(--gray);
+    color: var(--text-color);
 }
 
 @media (max-width: 768px) {
@@ -172,7 +196,7 @@ main {
     }
 
     header h1, .task-list h2, .done-list h2 {
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
     #new-task {
@@ -196,4 +220,47 @@ main {
         width: 100%;
         justify-content: space-around;
     }
+}
+
+/* Στυλ για το Pop-up */
+.popup {
+    display: none; /* Αρχικά κρυφό */
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Σκοτεινή σκιά */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Να είναι πάνω από όλα */
+}
+
+.popup-content {
+    background: var(--box-background); /* Σκούρο μπλε φόντο */
+    color: var(--text-color); /* Λευκό κείμενο */
+    border-radius: 0.5rem;
+    padding: 2rem;
+    position: relative;
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+.close-button:hover {
+    color: var(--edit-color); /* Μπλε όταν περνάς το ποντίκι */
+}
+
+.popup p {
+    font-size: 1.125rem;
+    margin: 0;
 }
