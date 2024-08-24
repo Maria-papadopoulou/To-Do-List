@@ -288,50 +288,70 @@ main {
     width: 100%; /* Εξασφαλίζει ότι το animation καλύπτει το πλήρες πλάτος */
 }
 
-/* Προσαρμογή για κάθετη προβολή σε κινητές συσκευές */
+/* Responsive design για κάθετη προβολή */
 @media (orientation: portrait) {
     header h1 {
-        font-size: 1.8rem; /* Μικρότερος τίτλος */
+        font-size: 1.5rem; /* Μικρότερος τίτλος για κάθετη προβολή */
     }
 
     #submit-new-task {
-        font-size: 0.875rem; /* Σμικρότερη γραμματοσειρά για κουμπί */
-        padding: 0.5rem;
+        font-size: 0.875rem; /* Μικρότερη γραμματοσειρά για κουμπί */
+        padding: 0.5rem; /* Μείωση padding για το κουμπί προσθήκης task */
+        width: 80%; /* Μείωση πλάτους για καλύτερη εφαρμογή */
+        margin-left: auto;
+        margin-right: auto; /* Κεντράρισμα του κουμπιού */
+    }
+
+    #input-new-task {
+        font-size: 0.875rem; /* Μικρότερη γραμματοσειρά για textarea */
+        padding: 0.5rem; /* Μείωση padding για textarea */
+        width: 90%; /* Μείωση πλάτους για να δώσει περισσότερο χώρο */
+        margin-left: auto;
+        margin-right: auto; /* Κεντράρισμα του textarea */
     }
 
     .task-list h2, .completed-tasks h2 {
-        font-size: 1.5rem; /* Μικρότεροι τίτλοι για μικρότερες οθόνες */
+        font-size: 1.25rem; /* Μικρότεροι τίτλοι για μικρότερες οθόνες */
+        margin-bottom: 0.5rem; /* Μείωση περιθωρίου κάτω από τους τίτλους */
     }
 
-    #input-new-task {
-        font-size: 0.875rem; /* Σμικρότερη γραμματοσειρά για textarea */
-        padding: 0.5rem;
-    }
-
-    /* Ενημέρωση CSS για τύπου γραφομηχανής */
-    .typewriter h2 {
-        font-size: 1.25rem; /* Μείωση μεγέθους γραμματοσειράς για κινητά */
-    }
-
-    #input-new-task {
-        font-size: 1rem; /* Μείωση μεγέθους γραμματοσειράς στο textarea για κινητά */
-        padding: 0.75rem; /* Μείωση padding για κινητά */
-        margin-right: 0.5rem; /* Μείωση margin-right για κινητά */
-    }
-
-    #submit-new-task {
-        padding: 0.5rem 1rem; /* Μείωση padding για το κουμπί προσθήκης task */
-        font-size: 1rem; /* Μείωση μεγέθους γραμματοσειράς για το κουμπί */
+    .task {
+        padding: 0.75rem; /* Μείωση padding για τα tasks */
     }
 
     .task .actions {
         flex-wrap: wrap; /* Εξασφαλίζει ότι τα κουμπιά προσαρμόζονται σε πολλές γραμμές αν χρειαστεί */
         justify-content: center; /* Κεντράρει τα κουμπιά */
+        margin-top: 0.5rem; /* Μείωση περιθωρίου πάνω από τα κουμπιά */
     }
 
     .task .actions button {
-        padding: 0.5rem; /* Μείωση padding για κουμπιά */
-        font-size: 0.875rem; /* Μείωση μεγέθους γραμματοσειράς για κουμπιά */
+        padding: 0.4rem; /* Μείωση padding για κουμπιά */
+        font-size: 0.8rem; /* Μικρότερη γραμματοσειρά για κουμπιά */
         margin: 0.25rem; /* Μείωση margin μεταξύ κουμπιών */
+        width: auto; /* Αυτορυθμιζόμενο πλάτος για κουμπιά */
+        flex: 1; /* Ίσος διαμοιρασμός του πλάτους μεταξύ των κουμπιών */
+    }
+
+    /* Προσαρμογή για το typewriter εφέ */
+    .typewriter h2 {
+        font-size: 1rem; /* Ακόμα μικρότερη γραμματοσειρά για κινητά */
+        width: 100%; /* Διατήρηση του πλήρους πλάτους */
+    }
+
+    #edit-popup, #popup {
+        width: 90%;
+        max-width: 300px;
+        padding: 1rem; /* Μείωση padding για καλύτερη εμφάνιση σε κινητά */
+    }
+
+    .edit-popup-content, .popup-content {
+        padding: 0.75rem; /* Μείωση padding για pop-ups */
+    }
+
+    #save-edit, #close-edit-popup, #close-popup {
+        padding: 0.4rem; /* Μείωση padding για κουμπιά στα pop-ups */
+        font-size: 0.875rem; /* Μικρότερη γραμματοσειρά για κουμπιά στα pop-ups */
+        width: auto; /* Αυτορυθμιζόμενο πλάτος για κουμπιά στα pop-ups */
     }
 }
