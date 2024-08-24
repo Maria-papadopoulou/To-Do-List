@@ -21,13 +21,13 @@ body {
 }
 
 header, main {
-    max-width: 1200px; /* Μέγιστο πλάτος για το περιεχόμενο */
+    max-width: 100%; /* Χρησιμοποιεί το πλήρες πλάτος της οθόνης */
     margin: 0 auto;
     padding: 1rem;
 }
 
 header h1 {
-    font-size: 2.5rem; /* Μεγαλύτερος τίτλος */
+    font-size: 2.2rem; /* Μεγαλύτερος τίτλος */
     text-align: center;
     margin-bottom: 1rem;
     color: var(--text-color);
@@ -37,7 +37,7 @@ header h1 {
     display: flex;
     flex-direction: column; /* Στήλες για καλύτερη εμφάνιση */
     margin-bottom: 2rem;
-    max-width: 600px; /* Μέγιστο πλάτος για τη φόρμα */
+    max-width: 100%; /* Πλήρες πλάτος για την φόρμα */
     margin-left: auto;
     margin-right: auto;
 }
@@ -45,12 +45,12 @@ header h1 {
 #input-new-task {
     width: 100%; /* Πλήρες πλάτος */
     background-color: #ffffff;
-    padding: 1rem;
+    padding: 0.75rem; /* Ελαφρύ padding */
     border: 2px solid var(--border-color);
     border-radius: 0.5rem;
     margin-bottom: 1rem; /* Κενό κάτω από το textarea */
     color: var(--text-color);
-    font-size: 1.25rem; /* Μεγαλύτερη γραμματοσειρά για input */
+    font-size: 1rem; /* Σμικρότερη γραμματοσειρά για καλύτερη εμφάνιση σε κινητά */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     resize: none; /* Απενεργοποίηση χειροκίνητης αλλαγής μεγέθους */
 }
@@ -59,9 +59,9 @@ header h1 {
     background-color: var(--border-color);
     color: #fff;
     border: none;
-    padding: 0.75rem 1.5rem; /* Μεγαλύτερο padding για πιο εύχρηστο κουμπί */
+    padding: 0.75rem 1.5rem; /* Padding για μεγαλύτερη χρηστικότητα */
     border-radius: 0.5rem;
-    font-size: 1.25rem; /* Μεγαλύτερη γραμματοσειρά για κουμπί */
+    font-size: 1rem; /* Μεγαλύτερη γραμματοσειρά για κουμπί */
     cursor: pointer;
     transition: background-color 0.3s;
     width: auto; /* Αυτορυθμιζόμενο πλάτος για το κουμπί */
@@ -85,7 +85,7 @@ main {
 
 .task-list h2, .completed-tasks h2 {
     text-align: center;
-    font-size: 2rem; /* Μεγαλύτερος τίτλος για τις ενότητες */
+    font-size: 1.75rem; /* Μικρότεροι τίτλοι για μικρότερες οθόνες */
     margin-bottom: 1rem;
     color: var(--text-color);
 }
@@ -108,7 +108,7 @@ main {
 
 #tasks .task .content .text, #done-tasks .task .content .text {
     color: var(--text-color);
-    font-size: 1.125rem; /* Μεγαλύτερη γραμματοσειρά για το κείμενο */
+    font-size: 1rem; /* Σμικρότερη γραμματοσειρά για καλύτερη εμφάνιση σε κινητά */
     width: 100%;
     display: block;
     box-sizing: border-box;
@@ -125,7 +125,7 @@ main {
 
 .task .actions {
     display: flex;
-    flex-wrap: wrap; /* Για καλύτερη εμφάνιση σε μικρές οθόνες */
+    flex-wrap: wrap; /* Στήλες για καλύτερη εμφάνιση σε μικρές οθόνες */
     margin-top: 1rem;
 }
 
@@ -133,11 +133,12 @@ main {
     cursor: pointer;
     margin: 0.5rem;
     padding: 0.5rem 1rem;
-    font-size: 1rem; /* Μεγαλύτερη γραμματοσειρά για τα κουμπιά */
+    font-size: 0.875rem; /* Σμικρότερη γραμματοσειρά για καλύτερη εμφάνιση σε κινητά */
     border-radius: 0.5rem;
     border: none;
     color: #fff;
     transition: opacity 0.3s;
+    width: 100%; /* Πλήρες πλάτος για τα κουμπιά */
 }
 
 .task .actions .edit {
@@ -178,16 +179,16 @@ main {
 
 .popup-content {
     background-color: #fff;
-    padding: 2rem;
+    padding: 1rem; /* Μικρότερο padding για καλύτερη εμφάνιση σε κινητά */
     border-radius: 0.5rem;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 90%;
-    max-width: 400px;
+    max-width: 300px; /* Μικρότερο μέγιστο πλάτος για καλύτερη εμφάνιση σε κινητά */
 }
 
 .popup-content p {
-    font-size: 1.125rem; /* Μεγαλύτερη γραμματοσειρά για κείμενο του pop-up */
+    font-size: 1rem; /* Μικρότερη γραμματοσειρά για κινητά */
     color: var(--text-color);
 }
 
@@ -195,10 +196,10 @@ main {
     background-color: var(--border-color);
     color: #fff;
     border: none;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem;
     border-radius: 0.5rem;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 0.875rem; /* Σμικρότερη γραμματοσειρά για κινητά */
     transition: background-color 0.3s;
 }
 
@@ -221,28 +222,24 @@ main {
 
 .edit-popup-content {
     background-color: #fff;
-    padding: 2rem;
+    padding: 1rem; /* Μικρότερο padding για καλύτερη εμφάνιση σε κινητά */
     border-radius: 0.5rem;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 90%;
-    max-width: 400px;
-}
-
-.edit-popup-content p {
-    font-size: 1.125rem; /* Μεγαλύτερη γραμματοσειρά για κείμενο του pop-up */
-    color: var(--text-color);
+    max-width: 300px; /* Μικρότερο μέγιστο πλάτος για καλύτερη εμφάνιση σε κινητά */
 }
 
 #save-edit {
     background-color: var(--save-color);
     color: #fff;
     border: none;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem;
     border-radius: 0.5rem;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 0.875rem; /* Σμικρότερη γραμματοσειρά για κινητά */
     transition: background-color 0.3s;
+    width: 100%; /* Πλήρες πλάτος για το κουμπί */
 }
 
 #save-edit:hover {
@@ -254,7 +251,7 @@ main {
     padding: 0.5rem;
     border: 2px solid var(--border-color);
     border-radius: 0.5rem;
-    font-size: 1rem;
+    font-size: 1rem; /* Κανονικό μέγεθος γραμματοσειράς */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 1rem;
 }
@@ -263,11 +260,12 @@ main {
     background-color: var(--border-color);
     color: #fff;
     border: none;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem;
     border-radius: 0.5rem;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 0.875rem; /* Σμικρότερη γραμματοσειρά για κινητά */
     transition: background-color 0.3s;
+    width: 100%; /* Πλήρες πλάτος για το κουμπί */
 }
 
 #close-edit-popup:hover {
@@ -276,67 +274,50 @@ main {
 
 /* Responsive design */
 @media (max-width: 600px) {
-    header, main {
-        padding: 0.5rem;
-    }
-
     header h1 {
-        font-size: 2rem;
+        font-size: 1.8rem; /* Μικρότερος τίτλος */
     }
 
     #submit-new-task {
-        font-size: 1rem;
+        font-size: 0.875rem; /* Σμικρότερη γραμματοσειρά για κουμπί */
         padding: 0.5rem;
     }
 
     .task-list h2, .completed-tasks h2 {
-        font-size: 1.5rem;
+        font-size: 1.5rem; /* Μικρότεροι τίτλοι για μικρότερες οθόνες */
     }
 
     #input-new-task {
-        font-size: 1rem;
+        font-size: 0.875rem; /* Σμικρότερη γραμματοσειρά για textarea */
         padding: 0.5rem;
     }
 
-    .task .actions {
-        flex-direction: column; /* Στήλες για καλύτερη εμφάνιση σε κινητά */
-    }
-
-    .task .actions button {
-        margin: 0.5rem 0;
-        width: 100%; /* Πλήρες πλάτος για τα κουμπιά σε κινητά */
-    }
-
     .typewriter h2 {
-        font-size: 1.5rem; /* Μικρότερη γραμματοσειρά για κινητά */
+        overflow: hidden; /* Κρύβει το περιεχόμενο που δεν είναι εμφανές */
+        border-right: .15em solid var(--text-color); /* Δημιουργεί την γραμμή του cursor */
+        white-space: nowrap; /* Αποτρέπει το τύλιγμα του κειμένου */
+        margin: 0 auto; /* Κεντράρει το κείμενο */
+        letter-spacing: .15em; /* Απόσταση μεταξύ των γραμμάτων */
+        animation: 
+            typing 3.5s steps(40, end), /* Ταχύτητα του typing effect */
+            blink-caret .75s step-end infinite; /* Εφέ του blinking cursor */
+        width: 100%; /* Εξασφαλίζει ότι το animation καλύπτει το πλήρες πλάτος */
     }
-}
-
-.typewriter {
-    position: relative; /* Για τη σωστή τοποθέτηση του κέρσορα */
-}
-
-.typewriter h2 {
-    overflow: hidden; /* Κρύβει το περιεχόμενο που δεν είναι εμφανές */
-    border-right: .15em solid var(--text-color); /* Δημιουργεί την γραμμή του cursor */
-    white-space: nowrap; /* Αποτρέπει το τύλιγμα του κειμένου */
-    margin: 0 auto; /* Κεντράρει το κείμενο */
-    letter-spacing: .15em; /* Απόσταση μεταξύ των γραμμάτων */
-    animation: 
-        typing 3.5s steps(40, end), /* Ταχύτητα του typing effect */
-        blink-caret .75s step-end infinite; /* Εφέ του blinking cursor */
-    height: 2.5rem; /* Ύψος για να χωράει το κείμενο και ο κέρσορας */
-}
-
-/* Animation για την εμφάνιση του κειμένου */
-@keyframes typing {
-    0% { width: 0; }
-    90% { width: calc(100% - 1em); } /* Σταματά λίγο πριν το τέλος της γραμμής */
-    100% { width: calc(100% - 1em); } /* Σταματά στο τέλος της γραμμής */
-}
-
-/* Animation για το blinking του cursor */
-@keyframes blink-caret {
-    from, to { border-color: transparent; }
-    50% { border-color: var(--text-color); }
-}
+    
+    /* Animation για την εμφάνιση του κειμένου */
+    @keyframes typing {
+        from { width: 0; }
+        to { width: 100%; }
+    }
+    
+    /* Animation για το blinking του cursor */
+    @keyframes blink-caret {
+        from, to { border-color: transparent; }
+        50% { border-color: var(--text-color); }
+    }
+    @media (max-width: 600px) {
+        .typewriter h2 {
+            font-size: 1.5rem; /* Μικρότερη γραμματοσειρά για κινητά */
+        }
+    }
+}        
