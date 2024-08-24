@@ -244,17 +244,7 @@ main {
 }
 
 #save-edit:hover {
-    background-color: #5a005a;
-}
-
-#edit-textarea {
-    width: 100%;
-    padding: 0.5rem;
-    border: 2px solid var(--border-color);
-    border-radius: 0.5rem;
-    font-size: 1rem; /* Κανονικό μέγεθος γραμματοσειράς */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 1rem;
+    background-color: #005757;
 }
 
 #close-edit-popup {
@@ -298,8 +288,8 @@ main {
     width: 100%; /* Εξασφαλίζει ότι το animation καλύπτει το πλήρες πλάτος */
 }
 
-/* Responsive design */
-@media (max-width: 600px) {
+/* Προσαρμογή για κάθετη προβολή σε κινητές συσκευές */
+@media (orientation: portrait) {
     header h1 {
         font-size: 1.8rem; /* Μικρότερος τίτλος */
     }
@@ -344,4 +334,4 @@ main {
         font-size: 0.875rem; /* Μείωση μεγέθους γραμματοσειράς για κουμπιά */
         margin: 0.25rem; /* Μείωση margin μεταξύ κουμπιών */
     }
-}      
+}
