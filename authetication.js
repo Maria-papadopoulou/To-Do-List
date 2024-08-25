@@ -78,3 +78,19 @@ allInputs.forEach(input => {
     }
   })
 })
+
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Αποτροπή της προεπιλεγμένης ενέργειας της φόρμας
+
+    // Αφαίρεση των στοιχείων της φόρμας
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    // Ελέγξτε τα στοιχεία (αυτό το παράδειγμα χρησιμοποιεί στατικές τιμές, προσαρμόστε το όπως χρειάζεται)
+    if (username === 'user' && password === 'password') {
+        // Μετάβαση στην σελίδα tasks.html αν τα στοιχεία είναι σωστά
+        window.location.href = 'tasks.html';
+    } else {
+        alert('Λάθος όνομα χρήστη ή κωδικός');
+    }
+});
