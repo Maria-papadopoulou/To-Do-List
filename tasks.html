@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <header>
+        <h1>Task List</h1>
+        <form id="new-task">
+            <div class="typewriter">
+                <h2 class="typing-animation">What do you have planned for today?</h2>
+            </div>
+            <textarea id="input-new-task" placeholder="Type your task here...." rows="1"></textarea>
+            <input type="submit" id="submit-new-task" value="Add Task">
+        </form>
+    </header>
+    <main>
+        <section id="tasks" class="task-list">
+            <h2>Tasks</h2>
+        </section>
+        <section id="done-tasks" class="completed-tasks">
+            <h2>Completed Tasks</h2>
+        </section>
+    </main>
+    <!-- Popup για εισαγωγή μηνύματος -->
+    <div id="popup">
+        <div class="popup-content">
+            <p>Please add a task.</p>
+            <button id="close-popup">Close</button>
+        </div>
+    </div>
+    <!-- Popup για επεξεργασία -->
+    <div id="edit-popup" class="popup">
+        <div class="popup-content">
+            <textarea id="edit-textarea" rows="4"></textarea>
+            <button id="save-edit">OK</button>
+            <button id="close-edit-popup">Cancel</button>
+        </div>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>
