@@ -11,9 +11,9 @@
         <h1>Task List</h1>
         <form id="new-task">
             <div class="typewriter">
-                <h2>What do you have planned today?</h2>
+                <h2 class="typing-animation">What do you have planned today?</h2>
             </div>
-            <textarea id="input-new-task" placeholder="What do you have planned today?" rows="1"></textarea>
+            <textarea id="input-new-task" placeholder="Type your task here...." rows="1"></textarea>
             <input type="submit" id="submit-new-task" value="Add Task">
         </form>
     </header>
@@ -32,14 +32,15 @@
             <button id="close-popup">Close</button>
         </div>
     </div>
-    <!-- Popup για επεξεργασία task -->
-    <div id="edit-popup">
-        <div class="edit-popup-content">
+    <!-- Popup για επεξεργασία -->
+    <div id="edit-popup" class="popup">
+        <div class="popup-content">
             <textarea id="edit-textarea" rows="4"></textarea>
-            <button id="save-edit">Save</button>
+            <button id="save-edit">OK</button>
             <button id="close-edit-popup">Cancel</button>
         </div>
     </div>
+    
     <script src="main.js"></script>
 </body>
 </html>

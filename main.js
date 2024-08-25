@@ -4,12 +4,11 @@ window.addEventListener('load', () => {
     const taskList = document.querySelector("#tasks");
     const completedList = document.querySelector("#done-tasks");
     const popup = document.querySelector("#popup");
-    const closePopup = document.querySelector("#close-popup");
+    const closePopupButton = document.querySelector("#close-popup");
     const editPopup = document.querySelector("#edit-popup");
-    const saveEdit = document.querySelector("#save-edit");
-    const closeEditPopup = document.querySelector("#close-edit-popup");
+    const saveEditButton = document.querySelector("#save-edit");
+    const closeEditPopupButton = document.querySelector("#close-edit-popup");
     const editTextarea = document.querySelector("#edit-textarea");
-
     let currentTask;
 
     form.addEventListener('submit', (event) => {
@@ -17,7 +16,7 @@ window.addEventListener('load', () => {
         const taskText = input.value.trim();
 
         if (taskText === '') {
-            popup.style.display = 'flex'; // Εμφανίστε το pop-up αν το κείμενο είναι κενό
+            popup.style.display = 'flex';
             return;
         }
 
@@ -38,7 +37,7 @@ window.addEventListener('load', () => {
         task.querySelector('.edit').addEventListener('click', () => {
             currentTask = task;
             editTextarea.value = task.querySelector('.text').textContent;
-            editPopup.style.display = 'flex'; // Εμφανίστε το pop-up επεξεργασίας
+            editPopup.style.display = 'flex';
         });
 
         task.querySelector('.delete').addEventListener('click', () => {
@@ -48,13 +47,18 @@ window.addEventListener('load', () => {
         task.querySelector('.complete').addEventListener('click', () => {
             task.classList.toggle('completed');
             if (task.classList.contains('completed')) {
-                // Αφαίρεση των κουμπιών από το task που μεταφέρεται στην ενότητα ολοκληρωμένων
-                const actions = task.querySelector('.actions');
-                actions.remove(); // Αφαίρεση των κουμπιών
-
+                // Αφαίρεση των κουμπιών από τις ολοκληρωμένες εργασίες
+                task.querySelector('.actions').innerHTML = '';
                 completedList.appendChild(task);
             } else {
+                // Προσθήκη ξανά των κουμπιών όταν η εργασία μετακινείται πίσω στις μη ολοκληρωμένες εργασίες
+                task.querySelector('.actions').innerHTML = `
+                    <button class="edit">Edit</button>
+                    <button class="delete">Delete</button>
+                    <button class="complete">Complete</button>
+                `;
                 taskList.appendChild(task);
+                addTaskActions(task);
             }
         });
 
@@ -62,19 +66,47 @@ window.addEventListener('load', () => {
         input.value = '';
     });
 
-    closePopup.addEventListener('click', () => {
-        popup.style.display = 'none'; // Κλείστε το pop-up όταν κάνετε κλικ στο κουμπί
+    closePopupButton.addEventListener('click', () => {
+        popup.style.display = 'none';
     });
 
-    closeEditPopup.addEventListener('click', () => {
-        editPopup.style.display = 'none'; // Κλείστε το pop-up επεξεργασίας όταν κάνετε κλικ στο κουμπί
-    });
-
-    saveEdit.addEventListener('click', () => {
+    saveEditButton.addEventListener('click', () => {
         if (currentTask) {
             const textElement = currentTask.querySelector('.text');
             textElement.textContent = editTextarea.value.trim();
-            editPopup.style.display = 'none'; // Κλείστε το pop-up επεξεργασίας μετά την αποθήκευση
+            editPopup.style.display = 'none';
         }
     });
+
+    closeEditPopupButton.addEventListener('click', () => {
+        editPopup.style.display = 'none';
+    });
+
+    function addTaskActions(task) {
+        task.querySelector('.edit').addEventListener('click', () => {
+            currentTask = task;
+            editTextarea.value = task.querySelector('.text').textContent;
+            editPopup.style.display = 'flex';
+        });
+
+        task.querySelector('.delete').addEventListener('click', () => {
+            task.remove();
+        });
+
+        task.querySelector('.complete').addEventListener('click', () => {
+            task.classList.toggle('completed');
+            if (task.classList.contains('completed')) {
+                task.querySelector('.actions').innerHTML = '';
+                completedList.appendChild(task);
+            } else {
+                task.querySelector('.actions').innerHTML = `
+                    <button class="edit">Edit</button>
+                    <button class="delete">Delete</button>
+                    <button class="complete">Complete</button>
+                `;
+                taskList.appendChild(task);
+                addTaskActions(task);
+            }
+        });
+    }
 });

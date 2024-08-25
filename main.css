@@ -8,72 +8,124 @@
     --save-color: #800080; /* Χρώμα κουμπιού Save (μωβ) */
     --delete-color: #ff0000; /* Χρώμα κουμπιού Delete (κόκκινο) */
     --complete-color: #008000; /* Χρώμα κουμπιού Complete (πράσινο) */
+    --text-gray: #888; /* Γκρίζο χρώμα κειμένου για ολοκληρωμένα tasks */
+    --line-through-color: #ff0000; /* Κόκκινη γραμμή διαγραφής για ολοκληρωμένα tasks */
 }
 
 /* Γενικά στυλ */
 body {
-    background-color: var(--background); /* Χρώμα φόντου της σελίδας */
-    color: var(--text-color); /* Χρώμα κειμένου */
+    background-color: var(--background);
+    color: var(--text-color);
     font-family: Arial, sans-serif;
-    font-size: 16px; /* Βασικό μέγεθος γραμματοσειράς */
+    font-size: 16px;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow: hidden; /* Απενεργοποίηση κάθετης κύλισης */
 }
 
+/* Κεντράρισμα του animation στο κέντρο της οθόνης */
+.typing-animation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.typing-animation {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.2rem;
+    overflow: hidden;
+    border-right: 0.15em solid var(--text-color);
+    white-space: nowrap;
+    animation: typing 4s steps(30, end) forwards, blink-caret 0.7s step-end infinite;
+    display: inline-block;
+    text-align: center;
+    color: var(--text-color);
+}
+
+@keyframes typing {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 31ch;
+    }
+}
+
+@keyframes blink-caret {
+    0%, 100% {
+        border-color: transparent;
+    }
+    50% {
+        border-color: var(--text-color);
+    }
+}
+
+/* Στυλ για το header και το main */
 header, main {
-    max-width: 100%; /* Χρησιμοποιεί το πλήρες πλάτος της οθόνης */
+    max-width: 100%;
     margin: 0 auto;
     padding: 1rem;
 }
 
-/* Προσαρμογή για υπολογιστές */
-@media (min-width: 768px) {
-    #new-task, .task-list, .completed-tasks {
-        max-width: 600px; /* Περιορισμένο πλάτος για υπολογιστές */
-        margin: 0 auto; /* Κεντράρισμα στοιχείων */
+@media (min-width: 768px) 
+{
+    #new-task, .task-list, .completed-tasks 
+    {
+        max-width: 600px;
+        margin: 0 auto;
     }
 }
 
-header h1 {
-    font-size: 2.2rem; /* Μεγαλύτερος τίτλος */
+header h1 
+{
+    font-size: 2.2rem;
     text-align: center;
     margin-bottom: 1rem;
     color: var(--text-color);
 }
 
-#new-task {
+#new-task 
+{
     display: flex;
-    flex-direction: column; /* Στήλες για καλύτερη εμφάνιση */
+    flex-direction: column;
     margin-bottom: 2rem;
     width: 100%;
     margin-left: auto;
     margin-right: auto;
 }
 
-#input-new-task {
-    width: 100%; /* Πλήρες πλάτος */
+#input-new-task 
+{
+    width: 100%;
     background-color: #ffffff;
-    padding: 0.75rem; /* Ελαφρύ padding */
+    padding: 0.75rem;
     border: 2px solid var(--border-color);
     border-radius: 0.5rem;
-    margin-bottom: 1rem; /* Κενό κάτω από το textarea */
+    margin-bottom: 1rem;
     color: var(--text-color);
-    font-size: 1rem; /* Σμικρότερη γραμματοσειρά για καλύτερη εμφάνιση σε κινητά */
+    font-size: 1rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    resize: none; /* Απενεργοποίηση χειροκίνητης αλλαγής μεγέθους */
+    resize: none;
 }
 
-#submit-new-task {
+#submit-new-task 
+{
     background-color: var(--border-color);
     color: #fff;
     border: none;
-    padding: 0.75rem 1.5rem; /* Padding για μεγαλύτερη χρηστικότητα */
+    padding: 0.75rem 1.5rem;
     border-radius: 0.5rem;
-    font-size: 1rem; /* Μεγαλύτερη γραμματοσειρά για κουμπί */
+    font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s;
-    width: auto; /* Αυτορυθμιζόμενο πλάτος για το κουμπί */
+    width: auto;
 }
 
 #submit-new-task:hover {
@@ -94,7 +146,7 @@ main {
 
 .task-list h2, .completed-tasks h2 {
     text-align: center;
-    font-size: 1.75rem; /* Μικρότεροι τίτλοι για μικρότερες οθόνες */
+    font-size: 1.75rem;
     margin-bottom: 1rem;
     color: var(--text-color);
 }
@@ -107,7 +159,7 @@ main {
     padding: 1rem;
     border-radius: 0.5rem;
     margin-bottom: 1rem;
-    word-wrap: break-word; /* Για τύλιγμα του κειμένου */
+    word-wrap: break-word;
 }
 
 #tasks .task .content, #done-tasks .task .content {
@@ -116,46 +168,43 @@ main {
 }
 
 #tasks .task .content .text, #done-tasks .task .content .text {
-    color: var(--text-color);
-    font-size: 1rem; /* Σμικρότερη γραμματοσειρά για καλύτερη εμφάνιση σε κινητά */
+    color: var(--text-gray);
+    font-size: 1rem;
     width: 100%;
     display: block;
     box-sizing: border-box;
-    resize: none; /* Απενεργοποίηση χειροκίνητης αλλαγής μεγέθους */
-    overflow: hidden; /* Απόκρυψη μπάρας κύλισης */
-    white-space: pre-wrap; /* Τυλίξτε το κείμενο */
-    min-height: 2rem; /* Ελάχιστο ύψος */
+    resize: none;
+    overflow: hidden;
+    white-space: pre-wrap;
+    min-height: 2rem;
 }
 
 .task.completed .text {
+    color: var(--text-gray);
     text-decoration: line-through;
-    color: #888; /* Χρώμα κειμένου για ολοκληρωμένες εργασίες */
+    text-decoration-color: var(--line-through-color);
 }
 
 .task .actions {
     display: flex;
-    flex-wrap: wrap; /* Στήλες για καλύτερη εμφάνιση σε μικρές οθόνες */
+    flex-wrap: wrap;
     margin-top: 1rem;
 }
 
 .task .actions button {
     cursor: pointer;
-    margin: 0.5rem;
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem; /* Σμικρότερη γραμματοσειρά για καλύτερη εμφάνιση σε κινητά */
-    border-radius: 0.5rem;
+    margin: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    border-radius: 0.25rem;
     border: none;
     color: #fff;
     transition: opacity 0.3s;
-    width: 100%; /* Πλήρες πλάτος για τα κουμπιά */
+    width: auto;
 }
 
 .task .actions .edit {
     background-color: var(--edit-color);
-}
-
-.task .actions .save {
-    background-color: var(--save-color);
 }
 
 .task .actions .delete {
@@ -181,55 +230,60 @@ main {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Σκηνικό χρώμα φόντου του pop-up */
+    background-color: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
 }
 
 .popup-content {
-    background-color: #fff;
-    padding: 1rem; /* Μικρότερο padding για καλύτερη εμφάνιση σε κινητά */
+    background-color: #008CBA;
+    padding: 2rem;
+    border-radius: 1rem;
+    text-align: center;
+    max-width: 50%;
+    margin: 5rem;
+}
+
+.popup-content p {
+    color: #fff;
+    margin: 0.5rem 0;
+}
+
+.popup-content button {
+    background-color: #005757;
+    border: none;
+    color: #fff;
+    padding: 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.popup-content button:hover {
+    background-color: #004848;
+}
+
+/* Στυλ για το Edit Popup */
+#edit-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+#edit-textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--border-color);
     border-radius: 0.5rem;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 400px; /* Περιορισμένο πλάτος για το popup */
-}
-
-/* Τύπος γραμματοσειράς για το animation της γραφομηχανής */
-@keyframes typing {
-    0% {
-        width: 0;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-    100% {
-        width: 10.3ch; /* Η σταθερή απόσταση για το κείμενο */
-        left: 50%;
-        transform: translateX(-50%);
-    }
-}
-
-@keyframes blink-caret {
-    from, to {
-        border-color: transparent;
-    }
-    50% {
-        border-color: var(--text-color);
-    }
-}
-
-.typing-animation {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 1.2rem;
-    overflow: hidden;
-    border-right: 0.15em solid var(--text-color);
-    white-space: nowrap;
-    width: 10.3ch; /* Σταθερό πλάτος για το κείμενο */
-    animation: typing 4s steps(22) 1s forwards, blink-caret 0.5s step-end infinite;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+    font-size: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    resize: none;
 }
