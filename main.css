@@ -288,3 +288,15 @@ main {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     resize: none;
 }
+#logout{
+    margin-top: 10px;
+    border: none;
+    border-radius: 1000px;
+    padding: .85em 4em;
+    background-color: var(--accent-color);
+    color: var(--base-color);
+    font: inherit;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 150ms ease;}

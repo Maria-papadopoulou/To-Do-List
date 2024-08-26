@@ -19,7 +19,7 @@ html{
     box-sizing: border-box;
     background-color: var(--base-color);
     height: 100vh;
-    width: max(40%, 600px);
+    width: max(100%, 600px);
     padding: 10px;
     border-radius: 0 20px 20px 0;
     display: flex;
