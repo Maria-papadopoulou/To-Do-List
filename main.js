@@ -9,6 +9,7 @@ window.addEventListener('load', () => {
     const saveEditButton = document.querySelector("#save-edit");
     const closeEditPopupButton = document.querySelector("#close-edit-popup");
     const editTextarea = document.querySelector("#edit-textarea");
+   
     let currentTask;
 
     form.addEventListener('submit', (event) => {
@@ -110,3 +111,12 @@ window.addEventListener('load', () => {
         });
     }
 });
+// Βρες το κουμπί logout με το ID του
+var logoutButton = document.getElementById("logout");
+
+// Πρόσθεσε τον event listener για το click event
+logoutButton.addEventListener("click", function() {
+    // Ανακατεύθυνση στη σελίδα index.html
+    window.location.href = "index.html";
+});
+
